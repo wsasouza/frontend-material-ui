@@ -5,7 +5,9 @@ export function Home() {
     <>
       <h1>Hello</h1>
       <p>Walter santos de Andrade Souza</p>
-      <Button>Click me</Button>
+      <Button variant="contained" color="primary">
+        Click me
+      </Button>
     </>
   );
 }
