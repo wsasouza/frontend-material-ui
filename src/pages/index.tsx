@@ -1,13 +1,12 @@
 import { Button } from '@mui/material';
+import { useAppThemeContext } from '../shared/contexts/ThemeContext';
 
 export function Home() {
+  const { toggleTheme } = useAppThemeContext();
+
   return (
-    <>
-      <h1>Hello</h1>
-      <p>Walter santos de Andrade Souza</p>
-      <Button variant="contained" color="primary">
-        Click me
-      </Button>
-    </>
+    <Button variant="contained" color="primary" onClick={toggleTheme}>
+      Click me
+    </Button>
   );
 }
