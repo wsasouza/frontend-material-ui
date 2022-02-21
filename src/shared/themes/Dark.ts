@@ -3,6 +3,7 @@ import { grey, orange } from '@mui/material/colors';
 
 export const DarkTheme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
       main: orange[700],
       dark: orange[800],
@@ -18,6 +19,11 @@ export const DarkTheme = createTheme({
     background: {
       default: '#202124',
       paper: '#303134',
+    },
+  },
+  typography: {
+    allVariants: {
+      color: '#fff',
     },
   },
 });
