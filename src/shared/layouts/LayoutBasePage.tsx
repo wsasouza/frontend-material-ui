@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import {
   Icon,
   IconButton,
@@ -12,12 +13,15 @@ import { useDrawerContext } from '../contexts';
 
 interface ILayoutBasePageProps {
   title: string;
+  toolbar?: ReactNode;
 }
 export const LayoutBasePage: React.FC<ILayoutBasePageProps> = ({
   children,
   title,
+  toolbar,
 }) => {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const theme = useTheme();
 
   const { toggleDrawerOpen } = useDrawerContext();
@@ -28,7 +32,7 @@ export const LayoutBasePage: React.FC<ILayoutBasePageProps> = ({
         padding={1}
         display="flex"
         alignItems="center"
-        height={theme.spacing(12)}
+        height={theme.spacing(smDown ? 6 : mdDown ? 8 : 12)}
         gap={1}
       >
         {smDown && (
@@ -37,12 +41,21 @@ export const LayoutBasePage: React.FC<ILayoutBasePageProps> = ({
           </IconButton>
         )}
 
-        <Typography variant="h5">{title}</Typography>
+        <Typography
+          variant={smDown ? 'h5' : mdDown ? 'h4' : 'h3'}
+          whiteSpace="nowrap"
+          overflow="hidden"
+          textOverflow="ellipses"
+        >
+          {title}
+        </Typography>
       </Box>
 
-      <Box>Barra de ferramentas</Box>
+      {toolbar && <Box>{toolbar}</Box>}
 
-      <Box>{children}</Box>
+      <Box flex={1} overflow="auto">
+        {children}
+      </Box>
     </Box>
   );
 };
